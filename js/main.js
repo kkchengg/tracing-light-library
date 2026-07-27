@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   setCurrentNavigation();
   setupMobileMenu();
   setupNewsTabs();
+  setupLocationMap();
+  setupActivityGallery();
   setupReservationForm();
   updateFooterYear();
 });
@@ -152,6 +154,193 @@ function activateTab(selectedButton) {
     panel.classList.toggle("is-active", isTargetPanel);
     panel.hidden = !isTargetPanel;
   });
+}
+
+const activityGalleries = {
+  "reading-universe": [
+    {
+      src: "images/閱讀小宇宙-2.jpg",
+      alt: "閱讀小宇宙新學年閱讀啟動禮照片 1",
+      caption: "分享故事、主題書展與小遊戲的活動花絮。"
+    },
+    {
+      src: "images/閱讀小宇宙-3.jpg",
+      alt: "閱讀小宇宙新學年閱讀啟動禮照片 2",
+      caption: "同學在活動中互動並訂下閱讀小目標。"
+    },
+    {
+      src: "images/閱讀小宇宙-4.jpg",
+      alt: "閱讀小宇宙新學年閱讀啟動禮照片 3",
+      caption: "活力四射的閱讀啟動現場與圖書館展示。"
+    }
+  ],
+  "family-reading-workshop": [
+    {
+      src: "images/共讀-1.jpeg",
+      alt: "親子共讀工作坊相片 1",
+      caption: "親子一起閱讀繪本，享受互動共讀時光。"
+    },
+    {
+      src: "images/共讀-2.jpeg",
+      alt: "親子共讀工作坊相片 2",
+      caption: "孩子與家長透過角色扮演深入故事情節。"
+    }
+  ],
+  "summer-reading-challenge": [
+    {
+      src: "images/暑期閱讀挑戰-1.jpeg",
+      alt: "暑期閱讀挑戰相片 1",
+      caption: "同學完成閱讀任務並收集閱讀之光貼紙。"
+    },
+    {
+      src: "images/暑期閱讀挑戰-2.jpeg",
+      alt: "暑期閱讀挑戰相片 2",
+      caption: "歡樂的暑期閱讀活動現場。"
+    },
+    {
+      src: "images/暑期閱讀挑戰-3.jpeg",
+      alt: "暑期閱讀挑戰相片 3",
+      caption: "歡樂的暑期閱讀活動現場。"
+    },
+  ]
+};
+
+let currentGallery = null;
+let currentSlideIndex = 0;
+let lastFocusedTrigger = null;
+
+function setupActivityGallery() {
+  const modal = document.getElementById("gallery-modal");
+  const backdrop = modal.querySelector(".gallery-backdrop");
+  const closeButton = modal.querySelector(".gallery-close");
+  const prevButton = modal.querySelector(".gallery-prev");
+  const nextButton = modal.querySelector(".gallery-next");
+  const imageElement = modal.querySelector(".gallery-image");
+  const counterElement = modal.querySelector(".gallery-counter");
+  const captionElement = modal.querySelector(".gallery-caption");
+
+  const galleryTriggers = document.querySelectorAll(".gallery-trigger");
+
+  if (!modal || !galleryTriggers.length) {
+    return;
+  }
+
+  galleryTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const galleryId = trigger.dataset.gallery;
+      if (!galleryId || !activityGalleries[galleryId]) {
+        return;
+      }
+
+      lastFocusedTrigger = trigger;
+      currentGallery = activityGalleries[galleryId];
+      currentSlideIndex = 0;
+      renderGallerySlide();
+      openGalleryModal();
+    });
+  });
+
+  closeButton.addEventListener("click", closeGalleryModal);
+  backdrop.addEventListener("click", closeGalleryModal);
+  prevButton.addEventListener("click", showPreviousSlide);
+  nextButton.addEventListener("click", showNextSlide);
+
+  document.addEventListener("keydown", (event) => {
+    if (!modal.classList.contains("is-open")) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeGalleryModal();
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showNextSlide();
+    }
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showPreviousSlide();
+    }
+  });
+
+  function openGalleryModal() {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    closeButton.focus();
+  }
+
+  function closeGalleryModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    currentGallery = null;
+    if (lastFocusedTrigger) {
+      lastFocusedTrigger.focus();
+    }
+  }
+
+  function renderGallerySlide() {
+    const slide = currentGallery[currentSlideIndex];
+    imageElement.src = slide.src;
+    imageElement.alt = slide.alt;
+    counterElement.textContent = `第 ${currentSlideIndex + 1} / ${currentGallery.length} 張`;
+    captionElement.textContent = slide.caption;
+  }
+
+  function showPreviousSlide() {
+    if (!currentGallery) {
+      return;
+    }
+    currentSlideIndex = (currentSlideIndex - 1 + currentGallery.length) % currentGallery.length;
+    renderGallerySlide();
+  }
+
+  function showNextSlide() {
+    if (!currentGallery) {
+      return;
+    }
+    currentSlideIndex = (currentSlideIndex + 1) % currentGallery.length;
+    renderGallerySlide();
+  }
+}
+
+function setupLocationMap() {
+  const mapContainer = document.getElementById("location-map");
+
+  if (!mapContainer) {
+    return;
+  }
+
+  const latitude = parseFloat(mapContainer.dataset.lat);
+  const longitude = parseFloat(mapContainer.dataset.lng);
+  const zoom = parseInt(mapContainer.dataset.zoom, 10) || 16;
+
+  if (Number.isNaN(latitude) || Number.isNaN(longitude)) {
+    mapContainer.innerHTML = `
+      <div>
+        <span>地圖設定錯誤，請檢查 latitude / longitude。</span>
+      </div>
+    `;
+    return;
+  }
+
+  const mapUrl = `https://maps.google.com/maps?q=${latitude},${longitude}&hl=zh-TW&z=${zoom}&output=embed`;
+
+  mapContainer.innerHTML = `
+    <iframe
+      width="600"
+      height="450"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="${mapUrl}"
+      title="溯光圖書館位置地圖"
+    ></iframe>
+  `;
 }
 
 function setupReservationForm() {

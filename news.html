@@ -71,7 +71,9 @@
           <div class="news-list">
             <article class="news-item">
               <div class="news-image-placeholder" aria-hidden="true">
-                <span>活動相片</span>
+                <span>
+                  <img src="images/閱讀小宇宙-front.jpg" alt="故事時間活動現場" />
+                </span>
               </div>
 
               <div class="news-item-content">
@@ -81,13 +83,15 @@
                   新學年第一個閱讀活動圓滿舉行。同學透過故事分享、主題書展和小遊戲，
                   認識圖書館的閱讀資源，並訂下自己的閱讀小目標。
                 </p>
-                <a href="#" class="text-link">查看活動相片</a>
+                <a href="#" class="text-link gallery-trigger" data-gallery="reading-universe">查看活動相片</a>
               </div>
             </article>
 
             <article class="news-item">
               <div class="news-image-placeholder" aria-hidden="true">
-                <span>活動相片</span>
+                <span>
+                  <img src="images/共讀-1.jpeg" alt="故事時間活動現場" />
+                </span>
               </div>
 
               <div class="news-item-content">
@@ -97,13 +101,15 @@
                   家長與孩子一起閱讀繪本，學習以提問、觀察圖像和角色扮演方式，
                   讓共讀時光變得更有趣、更有互動。
                 </p>
-                <a href="#" class="text-link">查看活動相片</a>
+                <a href="#" class="text-link gallery-trigger" data-gallery="family-reading-workshop">查看活動相片</a>
               </div>
             </article>
 
             <article class="news-item">
               <div class="news-image-placeholder" aria-hidden="true">
-                <span>活動相片</span>
+                <span>
+                  <img src="images/暑期閱讀挑戰-1.jpeg" alt="故事時間活動現場" />
+                </span>
               </div>
 
               <div class="news-item-content">
@@ -113,7 +119,7 @@
                   同學完成指定閱讀任務後，可獲得「閱讀之光」貼紙，
                   鼓勵大家在假期保持閱讀習慣。
                 </p>
-                <a href="#" class="text-link">查看活動相片</a>
+                <a href="#" class="text-link gallery-trigger" data-gallery="summer-reading-challenge">查看活動相片</a>
               </div>
             </article>
           </div>
@@ -136,7 +142,9 @@
           <div class="card-grid three-columns">
             <article class="book-card">
               <div class="book-cover-placeholder" aria-hidden="true">
-                <span>書封圖片</span>
+                <span>
+                  <img src="images/情緒小怪獸.png" alt="故事時間活動現場" style="height: 245px;" />
+                </span>
               </div>
 
               <div class="card-content">
@@ -149,25 +157,29 @@
 
             <article class="book-card">
               <div class="book-cover-placeholder" aria-hidden="true">
-                <span>書封圖片</span>
+                <span>
+                  <img src="images/了不起的我.jpeg" alt="故事時間活動現場" style="height: 245px;" />
+                </span>
               </div>
 
               <div class="card-content">
                 <span class="book-category">生活自理</span>
-                <h3>《我會自己做》</h3>
+                <h3>《了不起的我》</h3>
                 <p>從日常生活小事出發，陪伴孩子建立自理能力和自信心。</p>
-                <p class="book-meta">適合對象：幼兒至初小學生</p>
+                <p class="book-meta">適合對象：初小學生</p>
               </div>
             </article>
 
             <article class="book-card">
               <div class="book-cover-placeholder" aria-hidden="true">
-                <span>書封圖片</span>
+                <span>
+                  <img src="images/共讀-front.jpeg" alt="故事時間活動現場" style="height: 245px;" />
+                </span>
               </div>
 
               <div class="card-content">
                 <span class="book-category">親子共讀</span>
-                <h3>《今天是甚麼心情？》</h3>
+                <h3>《新子共讀起步走》</h3>
                 <p>透過溫柔的故事，引導親子一起談談每天遇到的心情與小事情。</p>
                 <p class="book-meta">適合對象：親子共讀</p>
               </div>
@@ -177,6 +189,29 @@
       </div>
     </section>
   </main>
+
+  <div id="gallery-modal" class="gallery-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="活動相片檢視">
+    <div class="gallery-backdrop"></div>
+    <div class="gallery-frame" role="document">
+      <button type="button" class="gallery-close" aria-label="關閉相片檢視">×</button>
+
+      <div class="gallery-content">
+        <div class="gallery-slide">
+          <img src="" alt="" class="gallery-image" />
+        </div>
+
+        <div class="gallery-info">
+          <p class="gallery-counter"></p>
+          <p class="gallery-caption"></p>
+        </div>
+
+        <div class="gallery-actions">
+          <button type="button" class="gallery-prev">上一張</button>
+          <button type="button" class="gallery-next">下一張</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="footer-placeholder"></div>
 </body>

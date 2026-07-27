@@ -298,6 +298,109 @@ details:focus-visible {
   transform: translateX(4px);
 }
 
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1200;
+}
+
+.gallery-modal.is-open {
+  display: block;
+}
+
+.gallery-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 61, 56, 0.72);
+}
+
+.gallery-frame {
+  position: relative;
+  width: min(90vw, 850px);
+  max-height: 90vh;
+  margin: auto;
+  padding: 1.5rem;
+  border-radius: var(--radius-large);
+  background-color: var(--color-paper);
+  box-shadow: var(--shadow-medium);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--color-forest-900);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.gallery-content {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+}
+
+.gallery-slide {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  overflow: hidden;
+  border-radius: var(--radius-medium);
+  background-color: var(--color-cream-50);
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  object-fit: contain;
+}
+
+.gallery-info {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--color-forest-900);
+}
+
+.gallery-counter {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.gallery-caption {
+  color: var(--color-muted);
+}
+
+.gallery-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gallery-actions button {
+  flex: 1 1 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background-color: var(--color-white);
+  color: var(--color-forest-900);
+  padding: 0.95rem 1rem;
+  font-weight: 800;
+}
+
+.gallery-actions button:hover {
+  background-color: var(--color-cream-100);
+}
+
 /* =========================
    Header
    ========================= */
@@ -603,6 +706,20 @@ details:focus-visible {
 .service-card {
   padding: 1.8rem;
   text-align: center;
+}
+
+.activity-card-image {
+  overflow: hidden;
+  border-radius: var(--radius-small);
+  margin-bottom: 1rem;
+}
+
+.activity-card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
 }
 
 .activity-card p,
@@ -1037,21 +1154,6 @@ details:focus-visible {
 .contact-details p {
   margin-bottom: 0.65rem;
   color: var(--color-ink);
-}
-
-.map-placeholder {
-  min-height: 360px;
-  padding: 2rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-medium);
-  text-align: center;
-}
-
-.map-placeholder small {
-  display: block;
-  margin-top: 0.4rem;
-  color: var(--color-muted);
-  font-weight: 400;
 }
 
 .faq-section {
