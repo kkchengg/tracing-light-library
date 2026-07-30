@@ -176,32 +176,27 @@ const activityGalleries = {
   ],
   "family-reading-workshop": [
     {
-      src: "images/共讀-1.jpeg",
+      src: "images/親子共讀工作坊-2.png",
       alt: "親子共讀工作坊相片 1",
       caption: "親子一起閱讀繪本，享受互動共讀時光。"
     },
     {
-      src: "images/共讀-2.jpeg",
+      src: "images/親子共讀工作坊-3.png",
       alt: "親子共讀工作坊相片 2",
       caption: "孩子與家長透過角色扮演深入故事情節。"
     }
   ],
   "summer-reading-challenge": [
     {
-      src: "images/暑期閱讀挑戰-1.jpeg",
+      src: "images/暑期閱讀挑戰-1.png",
       alt: "暑期閱讀挑戰相片 1",
       caption: "同學完成閱讀任務並收集閱讀之光貼紙。"
     },
     {
-      src: "images/暑期閱讀挑戰-2.jpeg",
+      src: "images/暑期閱讀挑戰-2.png",
       alt: "暑期閱讀挑戰相片 2",
       caption: "歡樂的暑期閱讀活動現場。"
-    },
-    {
-      src: "images/暑期閱讀挑戰-3.jpeg",
-      alt: "暑期閱讀挑戰相片 3",
-      caption: "歡樂的暑期閱讀活動現場。"
-    },
+    }
   ]
 };
 
