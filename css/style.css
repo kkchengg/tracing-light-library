@@ -787,6 +787,41 @@ details:focus-visible {
   line-height: 1.55;
 }
 
+.library-map {
+  background-color: var(--color-cream-100) !important;
+}
+
+.map-visual {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+}
+
+.map-visual img {
+  width: 100%;
+  height: auto;
+}
+
+area {
+  cursor: pointer;
+}
+
+.map-fallback-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 1.75rem;
+}
+
+@media (max-width: 720px) {
+  .map-fallback-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 /* =========================
    內頁主視覺
    ========================= */
